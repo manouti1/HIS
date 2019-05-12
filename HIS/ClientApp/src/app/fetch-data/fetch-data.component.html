@@ -1,24 +1,35 @@
-<h1>Weather forecast</h1>
+<h1>Patients</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<p style="float:right">
+  <input type="button" value="Add Patient" (click)="addNewPatient()" />
+</p>
 
-<p *ngIf="!forecasts"><em>Loading...</em></p>
-
-<table class='table table-striped' *ngIf="forecasts">
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
   <thead>
     <tr>
-      <th>Date</th>
-      <th>Temp. (C)</th>
-      <th>Temp. (F)</th>
-      <th>Summary</th>
+      <th>First Name</th>
+      <th>Mid Name</th>
+      <th>Last Name</th>
+      <th>Suffix</th>
+      <th>Mobile No</th>
+      <th>Nationality</th>
+      <th>Sex</th>
+      <th>Passport Number</th>
+      <th>Emirates ID</th>
+
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.dateFormatted }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
-      <td>{{ forecast.summary }}</td>
+    <tr *ngFor="let patient of patients" (click)="goToPatientDetails(patient.id)" style="cursor:pointer">
+      <td>{{ patient.firstName }}</td>
+      <td>{{ patient.midName }}</td>
+      <td>{{ patient.lastName }}</td>
+      <td>{{ patient.suffix }}</td>
+      <td>{{ patient.mobilePhone }}</td>
+      <td>{{ patient.nationality }}</td>
+      <td>{{ patient.sex }}</td>
+      <td>{{patient.passportNumber}}</td>
+      <td>{{patient.emiratesID}}</td>
     </tr>
   </tbody>
 </table>
