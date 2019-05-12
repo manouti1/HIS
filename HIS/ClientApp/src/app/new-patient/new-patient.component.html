@@ -6,31 +6,37 @@
 
   <div class="card-body px-lg-5 pt-0">
 
-    <form class="md-form" style="color: #757575;">
+    <form class="md-form" [formGroup]="patientForm" (ngSubmit)="submitPatient(patientForm.value)" style="color: #757575;">
       <h3>General Information</h3>
 
       <label for="input">First Name</label>
-      <input type="text" required class="form-control" placeholder="">
+      <input type="text" formControlName="firstName" required class="form-control" placeholder="">
 
       <label for="input">Mid Name</label>
-      <input type="text" class="form-control" placeholder="">
+      <input type="text" formControlName="midName" class="form-control" placeholder="">
 
       <label for="input">Last Name</label>
-      <input type="text" required class="form-control" placeholder="">
+      <input type="text" formControlName="lastName" required class="form-control" placeholder="">
 
       <label for="input">Suffix</label>
-      <input type="text" required class="form-control" placeholder="">
+      <input type="text" required formControlName="suffix" class="form-control" placeholder="">
 
       <label for="textarea">Address Line1</label>
-      <textarea class="form-control md-textarea" required id="textarea" placeholder=""></textarea>
+      <textarea class="form-control md-textarea" formControlName="addressLine1" required placeholder=""></textarea>
 
       <label for="textarea">Address Line2</label>
-      <textarea class="form-control md-textarea" required id="textarea" placeholder=""></textarea>
+      <textarea class="form-control md-textarea" required formControlName="addressLine2" placeholder=""></textarea>
 
       <label for="input">PO Box</label>
-      <input type="text" class="form-control" placeholder="">
+      <input type="text" class="form-control" formControlName="poBox" placeholder="">
+      <label for="input">Work Title</label>
+      <input type="text" formControlName="workTitle" class="form-control" placeholder="">
+
+      <label for="input">Mail Address</label>
+      <input type="text" formControlName="mailAddress" class="form-control" placeholder="">
+
       <div class="mb-4">
-        <select class="mdb-select md-form mb-4 initialized">
+        <select class="mdb-select md-form mb-4 initialized" formControlName="sex">
           <option value="" disabled="" selected="">Choose Sex</option>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
@@ -39,50 +45,60 @@
       </div>
       <div>
         <label for="input">Birth Date </label>
-        <input type="date" name="bday">
+        <input type="date" formControlName="birthDate" name="bday">
       </div>
+      <hr />
+      <h3>Patient Identification</h3>
       <label for="input">Emirate ID</label>
-      <input type="text" required class="form-control" placeholder="">
+      <input type="text" required formControlName="emiratesID" class="form-control" placeholder="">
 
       <label for="input">Passport Number</label>
-      <input type="text" required class="form-control" placeholder="">
+      <input type="text" formControlName="passportNumber" required class="form-control" placeholder="">
 
-      <label for="input">Work Title</label>
-      <input type="text" class="form-control" placeholder="">
-
-      <label for="input">Mail Address</label>
-      <input type="text" class="form-control" placeholder="">
       <hr />
       <h3>Telephone</h3>
       <label for="input">Mobile</label>
-      <input type="text" required class="form-control" placeholder="">
+      <input type="text" formControlName="mobileNo" required class="form-control" placeholder="">
 
       <label for="input">Home</label>
-      <input type="text" class="form-control" placeholder="">
+      <input type="text" formControlName="homeNo" class="form-control" placeholder="">
 
       <label for="input">Work</label>
-      <input type="text" class="form-control" placeholder="">
+      <input type="text" formControlName="workNo" class="form-control" placeholder="">
 
       <hr />
       <h3>Guardian Details</h3>
       <div class="d-flex align-items-center justify-content-between">
         <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="hasGaurdian">
+          <input type="checkbox" formControlName="hasGuardian" class="form-check-input" id="hasGaurdian" (change)="isChecked()">
           <label class="form-check-label" for="hasGaurdian">Has Guardian</label>
         </div>
 
+
       </div>
-      <hr/>
+
+      <div *ngIf="isChecked()">
+        <label for="input">Phone</label>
+        <input type="text" formControlName="phone" required class="form-control" placeholder="">
+
+        <label for="input">Address</label>
+        <input type="text" formControlName="address" required class="form-control" placeholder="">
+
+        <label for="input">Relation</label>
+        <input type="text" formControlName="relation" required class="form-control" placeholder="">
+
+      </div>
+      <hr />
       <h3>More Information</h3>
       <label for="input">Nationality</label>
-      <input type="text" required class="form-control" placeholder="">
+      <input type="text" formControlName="nationality" required class="form-control" placeholder="">
 
       <label for="input">Insurance Coverage</label>
-      <input type="text" required class="form-control" placeholder="">
+      <input type="text" formControlName="insuranceCoverage" required class="form-control" placeholder="">
 
 
-      <select class="mdb-select md-form mb-4 initialized">
-        <option value="" disabled="" selected="">Martial Status</option>
+      <select class="mdb-select md-form mb-4 initialized" formControlName="martialStatus">
+        <option value="" disabled="" selected="">Select Martial Status</option>
         <option value="Single">Single</option>
         <option value="Married">Married</option>
         <option value="Divorced">Divorced</option>
